@@ -1,0 +1,11 @@
+= Rdoc Markdown for Hitgub ReadMe's
+
+== Headers
+
+H1
+
+	=
+
+h2
+
+  ==
