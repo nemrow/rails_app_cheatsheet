@@ -1,0 +1,51 @@
+= Heroku
+
+== New App (no staging server)
+Initial creation:
+	
+  $ heroku create
+
+Push to server:
+
+  $ git push heroku master
+
+Rename app name:
+
+  $ heroku apps:rename newname 
+
+Migrate the database:
+
+  $ heroku run rake db:migrate
+
+== New App (production / staging servers)
+Setup staging server:
+
+  $ heroku create --remote staging
+
+Push to staging server:
+
+  $ git push staging master
+
+Migrate staging server:
+
+  $ heroku run rake db:migrate --remote staging
+
+Setup production server:
+
+  $ heroku create --remote production
+
+Push to production server:
+
+  $ git push production master
+
+Migrate the database:
+
+  $ heroku run rake db:migrate --remote production
+
+Rename production / staging app names:
+
+  $ heroku apps:rename newname --remote staging
+
+-or-
+
+  $ heroku apps:rename newname --remote production

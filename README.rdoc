@@ -1,0 +1,3 @@
+= Rails App Cheatsheet
+
+=== Can someone say booyah?
