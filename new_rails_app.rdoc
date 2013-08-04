@@ -26,3 +26,19 @@ Before you can run 'rspec' you must prepare your test database by running this:
 
   $ rake db:test:prepare
 
+== Customize auto generations
+
+Add this to your application.rb file in the main module:
+
+  config.generators do |g|
+        g.stylesheets = false
+        g.javascripts = false
+        g.view_specs = false
+        g.helper_specs = false
+        g.controller_specs = false
+        g.helper = false
+        g.assets = false
+    end
+
+Customize it to your liking. I personally hate having tons of extra shit generated that I never use (particularly on controller generation). This code will bare bones that generation to only include the controller and view.
+
