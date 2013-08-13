@@ -26,6 +26,19 @@ Before you can run 'rspec' you must prepare your test database by running this:
 
   $ rake db:test:prepare
 
+== Setup Cucumber
+
+Add this to your gemfile
+
+  group :test do
+    gem 'cucumber-rails', :require => false
+    gem 'database_cleaner'
+  end
+
+After running 'bundle install' run this:
+
+  $ rails generate cucumber:install
+
 == Customize auto generations
 
 Add this to your application.rb file in the main module:
