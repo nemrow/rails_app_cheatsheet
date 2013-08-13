@@ -1,0 +1,62 @@
+= Rspec
+
+== Controller Tests
+testing content in JSON response
+
+  describe UsersController do
+    it "adds a new user to database" do
+      user_count = User.count
+      get :create, {:new_user => {:first_name => 'Jordan', :last_name => 'Nemrow', :email => 'nemmy@nems.com'}}
+      response.should be_success
+      User.count.should == user_count + 1
+      result_hash = JSON.parse(response.body)
+      result_hash['response'].should == true
+    end
+  end
+
+== Factory Girl
+===Setting Up:
+
+Add this to your gemfile under :testing
+
+  gem "factory_girl_rails", "~> 4.0"
+
+Add a folder 'spec/factories'
+
+Any files in there will be loaded in your spec files
+
+=== Defining Factories
+
+  FactoryGirl.define do
+    factory :user do
+      first_name "Jordan"
+      last_name  "Nemrow"
+      email "nemrowj@gmizzail.com"
+      sc_id 98765
+    end
+
+    factory :project do
+      thing_1 'test'
+      thing_2 'also test'
+    end
+  end
+
+Make a field unique
+
+  factory :user do
+    first_name Faker::Name.first_name
+    last_name  Faker::Name.last_name
+    sequence :sc_id do |n|
+      "#{Random.rand(100000.999999)}#{n}"
+    end
+    sequence :email do |n|
+      "email#{n}@factory.com"
+    end
+  end
+
+==== Tip
+'rand' doesn't work for generating random numbers. You must use 'Random.rand'
+
+=== Using Factories
+
+  FactoryGirl.create(:user)
