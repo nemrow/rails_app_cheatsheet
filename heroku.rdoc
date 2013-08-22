@@ -49,3 +49,44 @@ Rename production / staging app names:
 -or-
 
   $ heroku apps:rename newname --remote production
+
+== Link local app to existing Heroku App
+
+Type this in the command line where 'project' is the name of your heroku app
+
+  $ git remote add heroku git@heroku.com:project.git
+
+== Restart Dynos
+
+  $ heroku restart
+
+== Configuring Remotes
+
+To view your remotes
+
+  $ git remote -v
+
+You should see something like this (this one has a staging server):
+
+  heroku  git@heroku.com:peaceful-tor-9413.git (fetch)
+  heroku  git@heroku.com:peaceful-tor-9413.git (push)
+  origin  https://github.com/nemrow/meat_app_2.git (fetch)
+  origin  https://github.com/nemrow/meat_app_2.git (push)
+  staging git@heroku.com:meat-app-staging.git (fetch)
+  staging git@heroku.com:meat-app-staging.git (push)
+
+To remove a remote:
+
+  $ git remote rm staging
+
+or (depending on the remote environment)
+
+  $ git remote rm heroku
+
+To add a remote
+
+  $ git remote add heroku git@heroku.com:yourappname.git
+
+or (depending on the remote environment)
+
+  $ git remote add staging git@heroku.com:yourappname.git

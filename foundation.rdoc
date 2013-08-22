@@ -1,0 +1,18 @@
+= Foundation (Zurb)
+
+== Setting Up
+
+Add this to the assets block in your gemfile:
+
+  group :assets do
+    gem 'compass-rails'
+    gem 'zurb-foundation', '~> 4.0.0'
+  end
+
+If your have altered your layout/application.html.erb file already, you should copy it prior to the next step as it will be replaced.
+
+After running 'bundle install' run this:
+
+  $ rails generate foundation:install
+
+You will be prompted to replace your layout/application.html.erb file. enter 'y' to force.
