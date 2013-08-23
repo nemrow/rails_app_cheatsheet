@@ -90,3 +90,14 @@ To add a remote
 or (depending on the remote environment)
 
   $ git remote add staging git@heroku.com:yourappname.git
+
+== Run console
+
+Single environment
+
+  $ heroku run console
+
+Mutliple environment
+
+  $ heroku run -a app-name console
+  ex: "heroku run jamify console"
