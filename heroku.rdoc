@@ -60,6 +60,10 @@ Type this in the command line where 'project' is the name of your heroku app
 
   $ heroku restart
 
+or
+
+  $ heroku restart --app app-name
+
 == Configuring Remotes
 
 To view your remotes
@@ -101,3 +105,7 @@ Mutliple environment
 
   $ heroku run -a app-name console
   ex: "heroku run jamify console"
+
+Setting timezone in producion / staging environments:
+
+  $ heroku config:add TZ="America/Los_Angeles" --app production-app-name

@@ -1,0 +1,23 @@
+= Setting Up Environment Variables
+
+Create a file config/app_environment_variables.rb
+
+  ENV['MAILGUN_KEY'] = 'wouldntyouliketoknow'
+  ENV['MAILGUN_KEY'] = "iwillnevertellyou"
+
+Then add this to config/environments/development as well as config/environments/development
+
+  app_environment_variables = File.join(Rails.root, 'config', 'app_environment_variables.rb')
+  load(app_environment_variables) if File.exists?(app_environment_variables)
+
+When you upload to Heroku you will need to input the environment variables manually
+
+  $ heroku config:set GITHUB_USERNAME=joesmith
+
+WIP: Have not tested with production / staging servers
+
+I would guess it would be:
+
+  $ heroku config:set GITHUB_USERNAME=joesmith --app my-app
+
+Git Ignore your app_environment_variables.rb file!
