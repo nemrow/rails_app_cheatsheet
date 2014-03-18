@@ -1,0 +1,31 @@
+= Monkey Patches
+
+== 'lib' folder
+
+Add 'monkey_patches' folder to your lib folder
+
+Add as many monkey patching files (described below) as needed to this folder
+
+== monkey patching files example
+
+  class ActiveSupport::TimeWithZone
+    def js_date_format
+      self.strftime("%Y, %m, %d, %H, %m")
+    end
+  end
+
+  class String
+    def with_period_at_end
+      "#{self}."
+    end
+  end
+
+== Initialize the monkey patching files
+
+Add a 'money_patch_initializer.rb' file in 'config/initializers'
+
+  Dir.glob("#{Rails.root}/lib/monkey_patches/*.rb").each do |file|
+    require file 
+  end
+
+  
