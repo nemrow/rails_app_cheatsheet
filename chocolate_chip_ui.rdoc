@@ -1,0 +1,13 @@
+= Chocolate Chip UI
+
+Creating a new chocolate chip project
+
+  In the package.json file in the chui folder (mobile/chui/package.json)
+  Change the path:
+  "projectPath": "/Users/nemrow/Dropbox/Dev/mobile/closet_tinder/"
+  to whatever path you want to add the chui framework to
+  This will also add example folders
+
+Once the path is added to that file you can run this command from the chui folder
+
+  grunt
