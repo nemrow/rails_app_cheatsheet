@@ -1,0 +1,59 @@
+= Sidekiq on Heroku 
+
+== Using Sidekiq
+
+app/workers/hard_worker.rb
+
+  class HardWorker
+    include Sidekiq::Worker
+  
+    def perform(name, count)
+      puts 'Doing hard work'
+    end
+  end
+
+calling the method
+
+  HardWorker.perform_async("jordan", 1)
+
+== Code Setup
+
+Gemfile:
+  
+  $ gem 'sidekiq'
+
+Procfile
+  $ worker: bundle exec sidekiq
+
+  # worker: bundle exec sidekiq -c 5
+  # will give you 5 workers
+  # You can add sidekiq options here for initializing
+
+config/environments/development.rb
+
+  $ ENV["REDISTOGO_URL"] = "redis://localhost:6379/"
+  # This is for your development machine to pickup your local redis server
+
+config/initializers/sidekiq.rb
+  
+  Sidekiq.configure_server do |config|
+    config.redis = { :url => ENV["REDISTOGO_URL"] }
+  end
+  
+  Sidekiq.configure_client do |config|
+    config.redis = { :url => ENV["REDISTOGO_URL"] }
+  end
+
+== Heroku Setup
+
+Add Redis to Heroku project
+
+  $ heroku addons:add redistogo
+  # $ heroku addons:add redistogo --remote staging 
+  # if staging / production
+
+Get Redis server url
+
+  $ heroku config | grep REDISTOGO_URL
+  # $ heroku config --remote staging | grep REDISTOGO_URL
+  # if staging / production
