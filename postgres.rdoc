@@ -1,0 +1,19 @@
+= Postgres
+
+== Add backups to heroku app
+
+  $ heroku addons:add pgbackups
+
+== Capture backup in app
+
+  $ heroku pgbackups:capture
+
+== Import backup to local box
+
+  $ curl -o latest.dump `heroku pgbackups:url --remote staging`
+
+== Dump into specific database
+
+  $ pg_restore --verbose --clean --no-acl --no-owner -h localhost -d customermash_development  latest.dump
+  # 'customermash_development' is the db this app is using on my local machine
+

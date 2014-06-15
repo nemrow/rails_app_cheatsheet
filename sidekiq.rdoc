@@ -28,6 +28,7 @@ Procfile
   # worker: bundle exec sidekiq -c 5
   # will give you 5 workers
   # You can add sidekiq options here for initializing
+  # Make sure you have a worker started on heroku for each queue
 
 config/environments/development.rb
 
