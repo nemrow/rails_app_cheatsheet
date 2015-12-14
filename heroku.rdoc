@@ -109,3 +109,11 @@ Mutliple environment
 Setting timezone in producion / staging environments:
 
   $ heroku config:add TZ="America/Los_Angeles" --app production-app-name
+
+Cloning production data into local machine
+
+  $ heroku pg:backups capture
+  $ curl -o latest.dump `heroku pg:backups public-url`
+  $ rake db:drop
+  $ rake db:create
+  $ pg_restore --verbose --clean -d penny-stock-mailer_development latest.dump
